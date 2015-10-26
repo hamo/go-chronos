@@ -37,9 +37,9 @@ type Job struct {
 
 	Container *Container `json:"container"`
 
-	CPUs   float32 `json:"cpus"`
-	Disk   float32 `json:"disk"`
-	Memory float32 `json:"mem"`
+	CPUs   float64 `json:"cpus"`
+	Disk   float64 `json:"disk"`
+	Memory float64 `json:"mem"`
 
 	Uris []string `json:"uris"`
 

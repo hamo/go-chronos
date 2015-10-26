@@ -5,12 +5,12 @@ import (
 )
 
 type JobStatHistogram struct {
-	Percentile75th float32 `json:"75thPercentile"`
-	Percentile95th float32 `json:"95thPercentile"`
-	Percentile98th float32 `json:"98thPercentile"`
-	Percentile99th float32 `json:"99thPercentile"`
-	Median         float32 `json:"Median"`
-	Mean           float32 `json:"mean"`
+	Percentile75th float64 `json:"75thPercentile"`
+	Percentile95th float64 `json:"95thPercentile"`
+	Percentile98th float64 `json:"98thPercentile"`
+	Percentile99th float64 `json:"99thPercentile"`
+	Median         float64 `json:"Median"`
+	Mean           float64 `json:"mean"`
 
 	Count int `json:"count"`
 }
