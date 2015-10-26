@@ -30,6 +30,20 @@ func NewDockerContainer() *Container {
 	}
 }
 
+func (c *Container) AddVolume(hostPath, containerPath, mode string) *Container {
+	if c.Volumes == nil {
+		c.Volumes = make([]*Volume, 0)
+	}
+
+	c.Volumes = append(c.Volumes, &Volume{
+		HostPath:      hostPath,
+		ContainerPath: containerPath,
+		Mode:          mode,
+	})
+
+	return c
+}
+
 func (c *Container) AddParameters(key, value string) *Container {
 	if c.Parameters == nil {
 		c.Parameters = make([]*Parameter, 0)
