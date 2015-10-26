@@ -29,3 +29,17 @@ func NewDockerContainer() *Container {
 		Network: "BRIDGE",
 	}
 }
+
+func (c *Container) AddParameters(key, value string) *Container {
+	if c.Parameters == nil {
+		c.Parameters = make([]*Parameter, 0)
+	}
+
+	c.Parameters = append(c.Parameters,
+		&Parameter{
+			Key:   key,
+			Value: value,
+		},
+	)
+	return c
+}
