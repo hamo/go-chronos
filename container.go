@@ -7,8 +7,8 @@ type Volume struct {
 }
 
 type Parameter struct {
-	Key   string `json:"key,omitempty"`
-	Value string `json:"value,omitempty"`
+	Key   string `json:"key"`
+	Value string `json:"value"`
 }
 
 type Container struct {
@@ -16,7 +16,7 @@ type Container struct {
 	Image   string `json:"image"`
 	Network string `json:"network"`
 
-	Volumes []*Volume `json:"volume"`
+	Volumes []*Volume `json:"volumes"`
 
 	Parameters []*Parameter `json:"parameters"`
 
@@ -44,7 +44,7 @@ func (c *Container) AddVolume(hostPath, containerPath, mode string) *Container {
 	return c
 }
 
-func (c *Container) AddParameters(key, value string) *Container {
+func (c *Container) AddParameter(key, value string) *Container {
 	if c.Parameters == nil {
 		c.Parameters = make([]*Parameter, 0)
 	}
