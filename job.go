@@ -75,6 +75,12 @@ func NewJob() *Job {
 	return j
 }
 
+func NewContainerJob() *Job {
+	j := NewJob()
+	j.Container = NewDockerContainer()
+	return j
+}
+
 func (j *Job) Init() {
 	j.Shell = true
 	j.Epsilon = "PT60S"
