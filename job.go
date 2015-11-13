@@ -35,7 +35,7 @@ type Job struct {
 	SoftError             bool `json:"softError"`
 	DataProcessingJobType bool `json:"dataProcessingJobType"`
 
-	Container *Container `json:"container"`
+	Container *Container `json:"container,omitempty"`
 
 	CPUs   float64 `json:"cpus"`
 	Disk   float64 `json:"disk"`
