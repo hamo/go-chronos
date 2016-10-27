@@ -18,6 +18,13 @@ type EnvVar struct {
 	Value string `json:"value"`
 }
 
+type Fetch struct {
+	Uri        string `json:"uri"`
+	Cache      bool   `json:"cache"`
+	Extract    bool   `json:"extract"`
+	Executable bool   `json:"executable"`
+}
+
 type Job struct {
 	Name        string `json:"name"`
 	Description string `json:"description"`
@@ -41,7 +48,8 @@ type Job struct {
 	Disk   float64 `json:"disk"`
 	Memory float64 `json:"mem"`
 
-	Uris []string `json:"uris"`
+	Uris  []string `json:"uris"`
+	Fetch []*Fetch `json:"fetch"`
 
 	Epsilon string `json:"epsilon"`
 
@@ -91,7 +99,6 @@ func (j *Job) Init() {
 
 	j.Arguments = make([]string, 0)
 	j.EnvironmentVariables = make([]*EnvVar, 0)
-	j.Uris = make([]string, 0)
 	j.Constraints = make([][]string, 0)
 }
 
@@ -150,7 +157,23 @@ func (j *Job) AddEnvVar(name, value string) *Job {
 }
 
 func (j *Job) AddUri(uri string) *Job {
+	if j.Uris == nil {
+		j.Uris = make([]string, 0)
+	}
 	j.Uris = append(j.Uris, uri)
+	return j
+}
+
+func (j *Job) AddFetch(uri string, cache, extract, executable bool) *Job {
+	if j.Fetch == nil {
+		j.Fetch = make([]*Fetch, 0)
+	}
+	j.Fetch = append(j.Fetch, &Fetch{
+		Uri:        uri,
+		Cache:      cache,
+		Extract:    extract,
+		Executable: executable,
+	})
 	return j
 }
 
